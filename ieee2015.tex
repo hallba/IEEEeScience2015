@@ -1,68 +1,108 @@
-\documentclass{llncs}
-%
-\usepackage{makeidx}  % allows for indexgeneration
+\documentclass[conference]{IEEEtran}
+
 \usepackage[british]{babel}
-\usepackage{url}
-\usepackage[pdftex,colorlinks=true]{hyperref}
+\usepackage{cite}
 \usepackage{graphicx}
-%\fussy
+\usepackage[hyphens]{url}
+%\usepackage[pdftex]{hyperref}
 
 
-\title{Reproducibility as a technical specification}
+% correct bad hyphenation here
+%\hyphenation{op-tical net-works semi-conduc-tor}
 
-\author{Tom Crick\inst{1} \and Benjamin A. Hall\inst{2} \and Samin Ishtiaq\inst{3}}
 
-\institute{Department of Computing \& Information Systems\\Cardiff Metropolitan University, UK\\
-\email{tcrick@cardiffmet.ac.uk}
-\and
-MRC Cancer Unit, University of Cambridge, UK\\
-\email{bh418@mrc-cu.cam.ac.uk}
-\and
-Microsoft Research Cambridge, UK\\
-\email{samin.ishtiaq@microsoft.com}
-}
-
-\raggedbottom
 \begin{document}
 %
-\frontmatter          % for the preliminaries
-%
-\pagestyle{headings}  % switches on printing of running heads
-%\addtocmark{} % additional mark in the TOC
+% paper title
+\title{Reproducibility as a Technical Specification}
 
+
+% author names and affiliations
+% use a multiple column layout for up to three different
+% affiliations
+\author{\IEEEauthorblockN{Tom Crick}
+\IEEEauthorblockA{Department of Computing \& Information Systems\\
+Cardiff Metropolitan University, UK\\
+Email: {\url{tcrick@cardiffmet.ac.uk}}}
+\and
+\IEEEauthorblockN{Benjamin A. Hall}
+\IEEEauthorblockA{MRC Cancer Unit\\
+University of Cambridge, UK\\
+Email: {\url{bh418@mrc-cu.cam.ac.uk}}}
+\and
+\IEEEauthorblockN{Samin Ishtiaq}
+\IEEEauthorblockA{Microsoft Research\\
+Cambridge, UK\\
+Email: {\url{samin.ishtiaq@microsoft.com}}}}
+
+% conference papers do not typically use \thanks and this command
+% is locked out in conference mode. If really needed, such as for
+% the acknowledgment of grants, issue a \IEEEoverridecommandlockouts
+% after \documentclass
+
+
+% use for special paper notices
+%\IEEEspecialpapernotice{(Invited Paper)}
+
+
+% make the title area
 \maketitle
 
+
 \begin{abstract}
+Reproducibility of scientific discoveries should be a certainty. As
+the product of several person-years' worth of effort, results --
+whether disseminated through academic journals, conferences or
+commercial ventures -- should generally be expected to be at
+repeatable by other researchers. On the surface this appears trivial,
+but a variety of factors can stand in the way. Whilst there has been
+detailed cross-disciplinary discussions of the various social,
+cultural and ideological drivers and (potential) solutions, one factor
+which has had less focus is the concept of reproducibility as a
+\emph{technical} challenge, with the potential for unambiguously
+defined standards and specifications.
 
-Reproducibility of scientific discoveries should be a certainty. As the product 
-of several person-years worth of effort results, whether disseminated through
-academic journals, conferences or commercial ventures, can be reasonably expected
-to be at a bare minimum repeatable. On the surface this appears trivial, but a 
-variety of factors can stand in the way. Whilst there has been detailed cross-
-displinary discussion of the political and ideological drivers and solutions, 
-one factor which has been less discussed is the concept of reproduciblity as 
-a \emph{technical} challenge, with the potential for unambiguously defined 
-standards and specifications. Here we discuss such a standard by defining the
-features which constitute a specification, and discuss a hypothetical cloud
-based service which would enable such a specification to be tested. In addition
-to serving a specific need for the scientific community, we further speculate on the 
-wider importance to the broader software development community of services which
-automate \emph{de novo} compilation and testing of code from source.
-
+In this paper, we discuss such a standard by defining the features
+which constitute a specification, and present cyberinfrastructure and
+associated workflow for a service which would enable such a
+specification to be verified and validated. In addition to addressing
+a pressing need for the scientific community, we further speculate on
+the potential contribution to the wider software development community
+of services which automate \emph{de novo} compilation and testing of
+code from source.
 \end{abstract}
 
-% Keywords for Easychair:
-% Reproducibility
-% Artifact evaluation
-% Benchmarks
-% Verification
-% Validation
+% For peer review papers, you can put extra information on the cover
+% page as needed:
+% \ifCLASSOPTIONpeerreview
+% \begin{center} \bfseries Keywords here... \end{center}
+% \fi
+%
+% For peerreview papers, this IEEEtran command inserts a page break and
+% creates the second title. It will be ignored for other modes.
+%\IEEEpeerreviewmaketitle
+
+\begin{IEEEkeywords}
+Reproducibility, Artifact evaluation, Cyberinfrastructure, Research
+software, Benchmarks, Verification, Validation
+\end{IEEEkeywords}
 
 
-\section{Introduction}\label{intro}
+%\newpage
 
+% trigger a \newpage just before the given reference
+% number - used to balance the columns on the last page
+% adjust value as needed - may need to be readjusted if
+% the document is modified later
+%\IEEEtriggeratref{28}
+% The "triggered" command can be changed if desired:
+%\IEEEtriggercmd{\enlargethispage{-5in}}
 
-\bibliographystyle{splncs}
+% references section
+\bibliographystyle{IEEEtran}
 \bibliography{ieee2015}
 
+% that's all folks
 \end{document}
+
+
