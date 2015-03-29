@@ -53,9 +53,9 @@ Email: {\url{samin.ishtiaq@microsoft.com}}}}
 Reproducibility of scientific discoveries should be a certainty. As
 the product of several person-years' worth of effort, results --
 whether disseminated through academic journals, conferences or
-commercial ventures -- should generally be expected to be at
-repeatable by other researchers. On the surface this appears trivial,
-but a variety of factors can stand in the way. Whilst there has been
+commercial ventures -- should generally be expected to be repeatable
+by other researchers. On the surface this appears trivial, but a
+variety of factors can stand in the way. Whilst there has been
 detailed cross-disciplinary discussions of the various social,
 cultural and ideological drivers and (potential) solutions, one factor
 which has had less focus is the concept of reproducibility as a
@@ -90,27 +90,26 @@ software, Benchmarks, Verification, Validation
 
 \section{Introduction}
 
-This is not a theory paper or a tool paper, nor an industrial case
-study. The primary aim of this paper is to start a discussion in the
-CAV community about the reproducibility of algorithms, models, tools
-and benchmarks across the computer-aided formal analysis and
-verification research domain. There is a significant opportunity for
-the CAV community to identify and address the technical and
-socio-cultural issues surrounding reproducibility in both the cognate
-research domain as well as more broadly for computer science; a
-desirable outcome would be a clear specification to encourage, enable
-and enforce reproducibility. Enumerating a standard for
-reproducibility would have a clear benefit for researchers as well as
-the CAV community as a whole.
+This paper aims to start a discussion in the computer and
+computational science community about the reproducibility of it's
+algorithms, models, tools and benchmarks. There is a significant
+opportunity for this community --- of whom we are proud members --- to
+identify and address the technical and socio-cultural issues
+surrounding reproducibility in both the cognate research domain as
+well as more broadly for computer science; a desirable outcome would
+be a clear specification to encourage, enable and enforce
+reproducibility. Enumerating a standard for reproducibility would have
+a clear benefit for researchers as well as the computing community as
+a whole.
 
 We recognise that we do not need to sell the idea of reproducibility
-to the CAV community too much: we are used to writing papers about our
-algorithms, models and tools; and reproducing others' work (or having
-our own work reproduced) is encapsulated in the ``Benchmark Tables''
-that CAV authors and referees both think are essential to any
-paper. But the idea of reproducibility is gaining momentum in the
-wider scientific community as well, for example in computer
-science~\cite{collberg-et-al:2014}, life
+to the computing community too much: we are used to writing papers
+about our algorithms, models and tools; and reproducing others' work
+(or having our own work reproduced) is encapsulated in the ``Benchmark
+Tables'' that authors and referees in this community both think are
+essential to any paper. The idea of reproducibility is gaining
+momentum in the wider scientific community as well, for example in
+computer science~\cite{collberg-et-al:2014}, life
 sciences~\cite{rollins-et-al:2014},
 psychology~\cite{chambers-et-al:2014} and the social
 sciences~\cite{conte-et-al:2012}.  There has been a revolution in the
@@ -124,50 +123,51 @@ have previously documented some of the technical and cultural barriers
 to reproducing work across computing and the computational sciences,
 both in terms of the sharing of algorithms~\cite{crick-et-al_wssspe2}
 and models and benchmark
-sets~\cite{crick-et-al_recomp2014,crick+chuehong:2014}.
+sets~\cite{crick-et-al_recomp2014}. 
 
 A number of high-profile computer science conferences, including PLDI,
 POPL, SIGMOD, CGO, SPLASH and ECAI, now explicitly acknowledge the
 importance of reproducibility (and repeatability, recomputability and
 the multitude of `Rs' that underpin e-research), as well as promoting
 community-driven reviewing and validation~\cite{fursin+dubach:2014}.
-For many --- the first time for CAV this year --- this takes the form
-of the author providing \emph{artefacts} (an accessible tool for
-reproducing results) to evaluate. Journals such as Nature, PLoS
-Computational Biology and Bioinformatics explicitly require that
-source code and data is made available online under some form of open
-source license. While these initiative are great, they are often
-optional, seem piecemeal, and do little to enable verification or
-validation of scientific results at a later stage. Even within the
-same field, there are different ideas of what defines reproducibility.
+For many, this takes the form of the author providing \emph{artefacts}
+(an accessible tool for reproducing results) for the reviewers to
+evaluate. Journals such as Nature, PLoS Computational Biology and
+Bioinformatics explicitly require that source code and data is made
+available online under some form of open source license. While these
+initiative are great, they are often optional, seem piecemeal, and do
+little to enable verification or validation of scientific results at a
+later stage. Even within the same field, there are different ideas of
+what defines reproducibility.
 
-This paper is thus a ``Call to Action'', inviting CAV practitioners to
-embrace a new methodology for disseminating research. Practically, we
-propose an initial specification for a reproducibility service for CAV. We
-present the requirements of the prototype, and a suggested plan for
-introducing the tool to the community. Finally, we highlight key
-implementation issues relating to security and general applicability
-which will need mitigating or resolving before widespread acceptance
-by the research community.  The benefits for reproducibility testing
-for a service are clear. In a sense, reproducibility here is an
-extension of the standard practice of \emph{testing}.  Three features
-distinguish our aims for reproducibility here: compilation and testing
-in a new machine, a continuous integration strategy for code commits,
-and the ability to add and remove benchmarks to the test set.
+This paper invites computer scientists to embrace a new methodology
+for disseminating research. Practically, we propose an initial
+specification for a reproducibility service for conferences and
+journals in this field. We present the requirements of the prototype,
+and a suggested plan for introducing the tool to an area of the 
+community. Finally, we highlight key implementation issues relating to
+security and general applicability which will need mitigating or
+resolving before widespread acceptance by the research community.  The
+benefits for reproducibility testing for a service are clear. In a
+sense, reproducibility here is an extension of the standard practice
+of \emph{testing}.  Three features distinguish our aims for
+reproducibility here: compilation and testing in a new machine, a
+continuous integration strategy for code commits, and the ability to
+add and remove benchmarks to the test set.
 
-We have a running example based upon the BioModelAnalyzer
-(BMA)\footnote{\url{http://biomodelanalyzer.research.microsoft.com/}}
-tool, which has been described by the authors over a series of VMCAI
-and CAV
+We have a running example based upon the BioModelAnalyzer tool which
+has been described by the authors over a series of VMCAI and CAV
 papers~\cite{cook-et-al:2011,benque-et-al:2012,cook-et-al:2014}.
-BMA is a tool for the development and analysis (simulation, model
-checking) of a specific class of formal models for biology. The tool
-specifically allows users to test for model \emph{stability}; that
-is, a bespoke algorithm proves that for all initial states a model
-always ends in a single fixpoint. We have chosen this example due to
-our familiarity with the tool, and to highlight historical examples
-where a reproducibility service would have supported both
-toolchain development and algorithm discovery.
+BioModelAnalyzer is available to use at
+\url{http://biomodelanalyzer.research.microsoft.com/}.
+BioModelAnalyzer is a tool for the development and analysis
+(simulation, model checking) of a specific class of formal models for
+biology. The tool specifically allows users to test for model
+\emph{stability}; that is, a bespoke algorithm proves that for all
+initial states a model always ends in a single fixpoint. We have
+chosen this example due to our familiarity with the tool, and to
+highlight historical examples where a reproducibility service would
+have supported both toolchain development and algorithm discovery.
 
 \section{A specification for reproducible computational science}\label{spec}
 
@@ -195,7 +195,7 @@ developer to make the project dependencies clearly available, and
 enables future changes in the dependencies (such as a library update)
 to be tested automatically too.
 
-Throughout the lifetime of BMA, development has been shared between a
+Throughout the lifetime of BioModelAnalyzer, development has been shared between a
 number of developers, working on different aspects of the tool. Work
 in algorithm development focuses on adding new features to a command
 line tool with few dependencies, aiding rapid development. In
@@ -263,19 +263,20 @@ a piece of code to test. These do not require that the latest version
 of the code is recompiled, but on submission the models are tested and
 added to the local repository of models for analysis.
 
-In the case of BMA, throughout the development of the tool, many
-refinements have been made to different implementations. Some of these
-were subtle, and were identified by unit tests; for example rounding
-mechanisms were switched between floors and rounds following a
-scientific discussion. More complex changes however broke behaviours
-which were not tested in our available benchmark set. One example was
-in the treatments of nodes without inputs; ``biological intuition''
-suggested that such nodes should have an alternative default function
-from other nodes. Here, the ability of users to submit new benchmarks
-would aid identification of these breaking changes, by extending the
-test sets and simplifying the process of adding to the test sets, and
-forcing the question of what changes are appropriate (and how to
-update old models to keep correct behaviour).
+In the case of BioModelAnalyzer, throughout the development of the
+tool, many refinements have been made to different
+implementations. Some of these were subtle, and were identified by
+unit tests; for example rounding mechanisms were switched between
+floors and rounds following a scientific discussion. More complex
+changes however broke behaviours which were not tested in our
+available benchmark set. One example was in the treatments of nodes
+without inputs; ``biological intuition'' suggested that such nodes
+should have an alternative default function from other nodes. Here,
+the ability of users to submit new benchmarks would aid identification
+of these breaking changes, by extending the test sets and simplifying
+the process of adding to the test sets, and forcing the question of
+what changes are appropriate (and how to update old models to keep
+correct behaviour).
 
 
 \subsection{Identification of algorithmic weaknesses}
