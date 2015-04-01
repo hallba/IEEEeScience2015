@@ -62,14 +62,17 @@ which has had less focus is the concept of reproducibility as a
 \emph{technical} challenge, with the potential for unambiguously
 defined standards and specifications.
 
-In this paper, we discuss such a standard by defining the features
-which constitute a specification, and present cyberinfrastructure and
+SI: what does technical mean here? 
+
+In this paper, we propose a technical specification for a service for
+reproducibility, and present cyberinfrastructure and
 associated workflow for a service which would enable such a
 specification to be verified and validated. In addition to addressing
 a pressing need for the scientific community, we further speculate on
 the potential contribution to the wider software development community
 of services which automate \emph{de novo} compilation and testing of
-code from source.
+code from source. We use the BioModelAnalyzer tool as a running example 
+for our specification and workflow. 
 \end{abstract}
 
 % For peer review papers, you can put extra information on the cover
@@ -130,8 +133,8 @@ POPL, SIGMOD, CGO, SPLASH and ECAI, now explicitly acknowledge the
 importance of reproducibility (and repeatability, recomputability and
 the multitude of `Rs' that underpin e-research), as well as promoting
 community-driven reviewing and validation~\cite{fursin+dubach:2014}.
-For many, this takes the form of the author providing \emph{artefacts}
-(an accessible tool for reproducing results) for the reviewers to
+For many, this takes the form of the author providing \emph{artefacts} ---
+an accessible tool for reproducing results --- for the reviewers to
 evaluate. Journals such as Nature, PLoS Computational Biology and
 Bioinformatics explicitly require that source code and data is made
 available online under some form of open source license. While these
@@ -140,7 +143,7 @@ little to enable verification or validation of scientific results at a
 later stage. Even within the same field, there are different ideas of
 what defines reproducibility.
 
-This paper invites computer scientists to embrace a new methodology
+This paper invites computer and computational scientists to embrace a new methodology
 for disseminating research. We propose an initial specification for a
 reproducibility service for conferences and journals in this field. We
 present the requirements of the prototype, and a suggested plan for
@@ -150,21 +153,21 @@ issues relating to security and general applicability which will need
 mitigating or resolving before widespread acceptance by the research
 community.  The benefits for reproducibility testing for a service are
 clear. In a sense, reproducibility here is an extension of the
-standard practice of \emph{testing}.  Three features distinguish our
+standard practice of \emph{testing}.  Three features are prominent in our
 aims for reproducibility here: compilation and testing in a new
 machine, a continuous integration strategy for code commits, and the
 ability to add and remove benchmarks to the test set.
 
 We have a running example based upon the BioModelAnalyzer tool which
 has been described by the authors over a series of VMCAI and CAV
-papers~\cite{cook-et-al:2011,benque-et-al:2012,cook-et-al:2014}.
-BioModelAnalyzer is available to use at
+papers~\cite{cook-et-al:2011,benque-et-al:2012,cook-et-al:2014}, 
+and is available to use at
 \url{http://biomodelanalyzer.research.microsoft.com/}.
 BioModelAnalyzer is a tool for the development and analysis
 (simulation, model checking) of a specific class of formal models for
 biology. The tool specifically allows users to test for model
 \emph{stability}; that is, a bespoke algorithm proves that for all
-initial states a model always ends in a single fixpoint. We have
+initial states a model always ends in a single, unique fixpoint. We have
 chosen this example due to our familiarity with the tool, and to
 highlight historical examples where a reproducibility service would
 have supported both toolchain development and algorithm discovery.
@@ -185,14 +188,6 @@ publications or other publicly-accessible datasets.
 \end{enumerate}
 
 \subsection{There are two types of people}
-
-The service must fit easily into the developers workflow. As
-noted in Section~\ref{rollout} we expect that there will be some costs
-to the users in terms of the time required to ensure that the code
-compiles and runs on the service. To minimise this, the service needs
-to connect to standard code repositories, automatically detecting and
-responding to new versions of the code and updates to dependencies,
-running tests for every new code commit.
 
 \begin{figure*}[!htp]
 	\centering
@@ -223,6 +218,14 @@ workflow. If this completes successfully, the second stage (labelled
 tested for a known property, and the results recorded. These results
 can then be stored in a database, with a note of the commit ID, and
 available through a web interface for future analysis.
+
+The service must fit easily into the developers workflow. As
+noted in Section~\ref{rollout} we expect that there will be some costs
+to the users in terms of the time required to ensure that the code
+compiles and runs on the service. To minimise this, the service needs
+to connect to standard code repositories, automatically detecting and
+responding to new versions of the code and updates to dependencies,
+running tests for every new code commit.
 
 \subsection{{\em de Novo} build environments}
 
@@ -305,7 +308,7 @@ fix-point)~\cite{claessen-et-al:2013}.
 
 \subsection{Algorithm--model axes}
 
-The proposed service would allow both types of test to be included
+The proposed service would allow both algorithm and model type of tests to be included
 explicitly, and models to be routinely added to each algorithm. Models
 which time-out with one but are successfully proved can be logged and
 identified for future study.  The features which define them would be
