@@ -59,10 +59,9 @@ but a variety of factors can stand in the way. Whilst there has been
 detailed cross-disciplinary discussions of the various social,
 cultural and ideological drivers and (potential) solutions, one factor
 which has had less focus is the concept of reproducibility as a
-\emph{technical} challenge, with the potential for unambiguously
-defined standards and specifications.
-
-SI: what does technical mean here? 
+\emph{technical} challenge. Specifically, the definition an \emph{unambiguous} and 
+\emph{measureable} standard of reproducibility would offer a major 
+benefit to the wider computational science community.
 
 In this paper, we propose a technical specification for a service for
 reproducibility, and present cyberinfrastructure and
@@ -143,6 +142,19 @@ little to enable verification or validation of scientific results at a
 later stage. Even within the same field, there are different ideas of
 what defines reproducibility.
 
+In contrast to other fields however, the development of algorithms 
+has unique advantages. Algorithms are tested through their implementation
+in code, and as such they can be accurately communicated either by sharing
+the implementation and a pseudo-code description of the algorithm behaviour.
+Furthermore, because of their discrete nature it is expected that they aways
+return the same output for the same input. It follows that these features 
+are more easily tested than the outputs of other scientific disciplines.
+To demonstrate the reproducibility of a newly developed algorithm, one must
+a) be able to create an operational artefact from the code, and b) show that 
+published models (i.e. benchmarks) show the same behaviours as those reported.
+This specification for reproducibility can in principle be tested for every
+publication in the field. 
+
 This paper invites computer and computational scientists to embrace a new methodology
 for disseminating research. We propose an initial specification for a
 reproducibility service for conferences and journals in this field. We
@@ -156,7 +168,7 @@ clear. In a sense, reproducibility here is an extension of the
 standard practice of \emph{testing}.  Three features are prominent in our
 aims for reproducibility here: compilation and testing in a new
 machine, a continuous integration strategy for code commits, and the
-ability to add and remove benchmarks to the test set.
+ability to add and remove benchmarks to the test set. 
 
 We have a running example based upon the BioModelAnalyzer tool which
 has been described by the authors over a series of VMCAI and CAV
